@@ -15,7 +15,10 @@ Class.forName("xxx").newInstance(); // Tworzymy instancję klasy na podstawie je
 * dev.config
 
 ```java
-java.utils.Properties('NAZWA_PLIKI').getProperty()
+import java.util.Properties; // Importujemy bibliotekę
+Properties prop = new Properties(); // Tworzymy nowy obiekt
+prop.load(new FileInputStream(Registry.pathname)); // Ładujemy konfigurację z pliku
+prop.getProperty("date_provider"); // Pobieramy wartość na podstawie nazwy klucza
 ```
 
 ## Zadanie
