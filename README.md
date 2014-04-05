@@ -23,7 +23,7 @@ prop.getProperty("date_provider"); // Pobieramy wartość na podstawie nazwy klu
 
 ## Zadanie
 
-Z użyciem wzorca projektowego plugin proszę stworzyć mechanizm dostarczania do aplikacji czasu:
+Z użyciem wzorca projektowego *Plugin* proszę stworzyć mechanizm dostarczania do aplikacji czasu:
 
 - aktualnego
 - ustalonego
