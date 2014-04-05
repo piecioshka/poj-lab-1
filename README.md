@@ -1,32 +1,34 @@
-# Programwoanie obiektowe w Java - wykład 1 (09-03-2014)
+# poj-lab-1
 
 ## Wzorzec Plugin
 
 Konfigurujemy aplikację przez konfigurację w pliku.
 
 ```java
-Class.forName("xxx").newInstance(); // Towrzymy instancję klasy na podstawie jej nazwy
+Class.forName("xxx").newInstance(); // Tworzymy instancję klasy na podstawie jej nazwy
 ```
 
 `.properties` rozszerzenia do plików konfiguracyjnych (domyślnie)
-
 
 * prod.config
 * test.config
 * dev.config
 
 ```java
-Java.utils.Properties('NAZWA_PLIKI').getPrperty()
+java.utils.Properties('NAZWA_PLIKI').getProperty()
 ```
 
-### Zadanie 1
+## Zadanie
 
 Z użyciem wzorca projektowego plugin proszę stworzyć mechanizm dostarczania do aplikacji czasu:
-a) aktualnego
-b) ustalonego
+
+- aktualnego
+- ustalonego
+
 W zależności od wartości określonych w pliku konfiguracyjnym typu properties.
 
-Sposób wykonania:
+## Sposób wykonania:
+
 1. Tworzymy interfejs: DataProvider
 2. Tworzymy implementację: Aktualna data
 3. Tworzymy implementację: Na sztywno
