@@ -13,7 +13,9 @@ public class Registry {
     /**
      * Blokujemy możliwość stworzenia instancji tej klasy.
      */
-    private Registry() {}
+    private Registry() {
+        System.out.println("Private constructor of Registry");
+    }
 
     /**
      * Wczytujemy konfigurację z pliku: prod.properties oraz tworzymy instancję klasy z nazwy zapisanej w odpowiedniej
