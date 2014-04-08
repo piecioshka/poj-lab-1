@@ -1,7 +1,6 @@
 package pl.piecioshka.poj_lab_1;
 
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.Properties;
 
 public class Registry {
@@ -14,7 +13,7 @@ public class Registry {
      * Blokujemy możliwość stworzenia instancji tej klasy.
      */
     private Registry() {
-        System.out.println("Private constructor of Registry");
+        // Private constructor of Registry
     }
 
     /**
@@ -22,14 +21,32 @@ public class Registry {
      * właściwości.
      *
      * @return Instancja klasy implementującej interfejs DataProvider.
-     * @throws IOException
-     * @throws ClassNotFoundException
-     * @throws IllegalAccessException
-     * @throws InstantiationException
      */
-    public static DateProvider getDateProvider() throws IOException, ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public static DateProvider getDateProvider() throws UnknownDateProvider, ConfigurationNotFound, FailedCreateDateProvider {
         Properties prop = new Properties();
-        prop.load(new FileInputStream(Registry.pathname));
-        return (DateProvider) Class.forName(prop.getProperty("date_provider")).newInstance();
+        Class<?> dateProviderClass;
+        Object dataProviderInstance;
+
+        try {
+            prop.load(new FileInputStream(Registry.pathname));
+        } catch (Exception e) {
+            throw new ConfigurationNotFound("Configuration " + Registry.pathname + " does not exists");
+        }
+
+        String providerName = prop.getProperty("date_provider");
+
+        try {
+            dateProviderClass = Class.forName(providerName);
+        } catch (Exception e) {
+            throw new UnknownDateProvider("Provide " + providerName + " is not defined");
+        }
+
+        try {
+            dataProviderInstance = dateProviderClass.newInstance();
+        } catch (Exception e) {
+            throw new FailedCreateDateProvider("Failed to create instance of DateProvider");
+        }
+
+        return (DateProvider) dataProviderInstance;
     }
 }
